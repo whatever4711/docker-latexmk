@@ -21,6 +21,6 @@ RUN apk add --no-cache perl wget tini && \
     mv /usr/local/tlmgrinstall.sh /usr/bin/tlmgrinstall && \
     chmod +x /usr/bin/tlmgrinstall
 
-VOLUME ["workdir"]
+VOLUME ["/workdir"]
 ENTRYPOINT ["tini", "--", "tlmgrinstall"]
 CMD ["latexmk", "--help"]
