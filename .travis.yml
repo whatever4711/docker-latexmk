@@ -19,3 +19,4 @@ after_success:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker tag latex $REPO:$TAG
   - docker push $REPO
+  - curl -X POST https://hooks.microbadger.com/images/whatever4711/latex/N1SaUHVfUnGBD9-5UiFCDa1j8hE=
