@@ -1,0 +1,7 @@
+latexmk
+lm
+ec
+ms
+babel
+german
+babel-german

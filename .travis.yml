@@ -1,0 +1,21 @@
+env:
+  global:
+  - CGO_ENABLED=0
+  - GOOS=linux
+  - GOARCH=amd64
+
+sudo: required
+services:
+  - docker
+
+# Building all docker container based on 64 bit image
+script:
+  - docker build -t glibc -f ./alpine-glibc/Dockerfile ./alpine-glibc
+  - docker build -t latex -f ./latex/Dockerfile ./latex
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - export REPO=whatever4711/latex
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  - docker tag latex $REPO:$TAG
+  - docker push $REPO
