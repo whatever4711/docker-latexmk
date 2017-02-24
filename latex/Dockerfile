@@ -19,7 +19,8 @@ RUN apk add --no-cache perl wget tini && \
     apk --no-cache del .build-dependencies && \
     mv /usr/local/packages.txt /default-packages.txt && \
     mv /usr/local/tlmgrinstall.sh /usr/bin/tlmgrinstall && \
-    chmod +x /usr/bin/tlmgrinstall
+    chmod +x /usr/bin/tlmgrinstall && \
+    tlmgr install $(cat /default-packages.txt)
 
 VOLUME ["/workdir"]
 WORKDIR /workdir
