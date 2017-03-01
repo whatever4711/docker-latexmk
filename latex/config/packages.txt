@@ -5,3 +5,4 @@ ms
 babel
 german
 babel-german
+hyphen-german
