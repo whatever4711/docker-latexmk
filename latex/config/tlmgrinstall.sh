@@ -10,6 +10,7 @@ tlmgrinstall() {
   tlmgr install ${packages}
 }
 
+tlmgr update --self
 tlmgrinstall
 
 exec "$@"
