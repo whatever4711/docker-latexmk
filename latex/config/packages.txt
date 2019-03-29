@@ -6,3 +6,4 @@ babel
 german
 babel-german
 hyphen-german
+collection-fontsrecommended

@@ -2,12 +2,10 @@
 set -eo pipefail
 
 tlmgrinstall() {
-  local file="/default-packages.txt"
   if [ -f "${PWD}/packages.txt" ]; then
-    file="${PWD}/packages.txt"
+    local packages="$(cat ${PWD}/packages.txt)"
+    tlmgr install ${packages}
   fi
-  local packages="$(cat ${file})"
-  tlmgr install ${packages}
 }
 
 tlmgr update --self
