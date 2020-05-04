@@ -7,3 +7,5 @@ german
 babel-german
 hyphen-german
 collection-fontsrecommended
+pgf
+pgfplots
