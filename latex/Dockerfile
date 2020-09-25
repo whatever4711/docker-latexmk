@@ -1,9 +1,9 @@
 FROM alpine
 
-ENV PATH=/usr/local/texlive/2020/bin/x86_64-linuxmusl:/usr/sbin:$PATH
+ENV PATH=/usr/local/texlive/2020/bin/x86_64-linux:/usr/sbin:$PATH
 
 COPY config/ /usr/local/
-RUN apk add --no-cache perl wget tini gnupg gcc && \
+RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev && \
     mkdir /tmp/install-tl-unx /workdir && \
     wget -qO- http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
