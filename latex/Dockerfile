@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV PATH=/usr/local/texlive/2020/bin/x86_64-linux:/usr/sbin:$PATH
+ENV PATH=/usr/local/texlive/2021/bin/x86_64-linux:/usr/sbin:$PATH
 
 COPY config/ /usr/local/
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
