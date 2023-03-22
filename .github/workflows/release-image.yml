@@ -59,4 +59,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: ${{ env.BUILD_YEAR }}
+          build-args: YEAR=${{ env.BUILD_YEAR }}
