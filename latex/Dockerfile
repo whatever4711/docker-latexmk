@@ -1,6 +1,7 @@
 FROM alpine
+ARG YEAR
 
-ENV PATH=/usr/local/texlive/2023/bin/x86_64-linux:/usr/local/texlive/2022/bin/x86_64-linuxmusl:/usr/sbin:$PATH
+ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/x86_64-linuxmusl:/usr/sbin:$PATH
 
 COPY config/ /usr/local/
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
