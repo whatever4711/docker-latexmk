@@ -50,7 +50,7 @@ jobs:
         with:
           images: |
             whatever4711/latex
-            ghcr.io/latex
+            ghcr.io/${{ env.REPO }}
 
       - name: Build and push
         uses: docker/build-push-action@v4.0.0
