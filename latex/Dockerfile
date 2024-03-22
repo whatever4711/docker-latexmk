@@ -7,8 +7,7 @@ COPY config/ /usr/local/
 RUN apk add --no-cache bind-tools
 RUN dig mirror.ctan.org
 RUN cat /etc/resolv.conf
-RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-RUN ping -c 2 mirror.ctan.org
+RUN ping -c 2 $$(dig +short @8.8.8.8 mirror.ctan.org)
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev 
