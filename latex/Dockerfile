@@ -6,6 +6,12 @@ ADD https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz /tmp/$TA
 
 COPY config/ /usr/local/
 
+RUN echo `cat /etc/resolv.conf`
+
+RUN echo "nameserver 8.8.8.8" | tee  /etc/resolv.conf.DNSoverride && \
+    ln -sf /etc/resolv.conf.DNSoverride /etc/resolv.conf && \
+    echo `cat /etc/resolv.conf`
+
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev && \
     mkdir /tmp/install-tl-unx /workdir && \
