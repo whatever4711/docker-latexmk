@@ -6,7 +6,7 @@ env:
 on:
   push:
     branches:
-      - main
+      - '**'
   pull_request:
     branches:
       - main
@@ -25,5 +25,11 @@ jobs:
       run: echo "REPO=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
     - name: Checkout
       uses: actions/checkout@v3.4.0
+    - name: Set 8.8.8.8 as dns server
+      run: |
+        sudo sed -i 's/#DNS=/DNS=8.8.8.8 8.8.4.4/g' /etc/systemd/resolved.conf
+        sudo systemctl daemon-reload
+        sudo systemctl restart systemd-networkd
+        sudo systemctl restart systemd-resolved
     - name: Build the Docker image
       run: docker build ./latex/ --file ./latex/Dockerfile --build-arg YEAR=${{ env.BUILD_YEAR }} --tag ${{ env.REGISTRY }}/latex:${{ env.BUILD_DATE }}

@@ -28,3 +28,4 @@ VOLUME ["/workdir"]
 WORKDIR /workdir
 ENTRYPOINT ["tini", "--", "tlmgrinstall"]
 CMD ["latexmk", "--help"]
+
