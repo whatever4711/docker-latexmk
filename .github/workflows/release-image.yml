@@ -31,6 +31,13 @@ jobs:
       - name: Set year
         run: echo "BUILD_YEAR=$(date +%Y)" >> $GITHUB_ENV
 
+      - name: Set 8.8.8.8 as dns server
+        run: |
+          sudo sed -i 's/#DNS=/DNS=8.8.8.8 8.8.4.4/g' /etc/systemd/resolved.conf
+          sudo systemctl daemon-reload
+          sudo systemctl restart systemd-networkd
+          sudo systemctl restart systemd-resolved
+
       - name: Log in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
