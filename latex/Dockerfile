@@ -6,11 +6,12 @@ ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/
 COPY config/ /usr/local/
 RUN apk add --no-cache bind-tools
 RUN dig mirror.ctan.org
+RUN ping -c 2 mirror.ctan.org
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev 
 RUN mkdir /tmp/install-tl-unx /workdir && \
-    wget -O- http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
+    wget -O- https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
     printf "%s\n" \
       "selected_scheme scheme-basic" \
