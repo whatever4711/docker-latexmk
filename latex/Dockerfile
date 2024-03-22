@@ -6,6 +6,8 @@ ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/
 COPY config/ /usr/local/
 RUN apk add --no-cache bind-tools
 RUN dig mirror.ctan.org
+RUN cat /etc/resolv.conf
+RUN echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 RUN ping -c 2 mirror.ctan.org
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
