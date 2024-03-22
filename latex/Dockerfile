@@ -21,9 +21,9 @@ RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk --no-cache del .build-dependencies && \
     mv /usr/local/packages.txt /default-packages.txt && \
     mv /usr/local/tlmgrinstall.sh /usr/bin/tlmgrinstall && \
-    chmod +x /usr/bin/tlmgrinstall && \
-    tlmgr install $(cat /default-packages.txt) && \
-    rm /default-packages.txt
+    chmod +x /usr/bin/tlmgrinstall 
+#    tlmgr install $(cat /default-packages.txt) && \
+#    rm /default-packages.txt
 
 VOLUME ["/workdir"]
 WORKDIR /workdir
