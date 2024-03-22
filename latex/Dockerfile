@@ -3,7 +3,7 @@ ARG YEAR
 
 ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/x86_64-linuxmusl:/usr/sbin:$PATH
 ADD https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz /tmp/
-
+RUN ls /tmp
 COPY config/ /usr/local/
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
