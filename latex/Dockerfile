@@ -5,10 +5,6 @@ ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/
 ADD https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz /tmp/
 
 COPY config/ /usr/local/
-RUN apk add --no-cache bind-tools
-RUN dig mirror.ctan.org
-RUN cat /etc/resolv.conf
-RUN ping -c 2 `dig +short @8.8.8.8 mirror.ctan.org`
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev 
