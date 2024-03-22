@@ -4,7 +4,7 @@ ARG YEAR
 ENV PATH=/usr/local/texlive/$YEAR/bin/x86_64-linux:/usr/local/texlive/$YEAR/bin/x86_64-linuxmusl:/usr/sbin:$PATH
 
 COPY config/ /usr/local/
-RUN apk add --no-cach bind-utils
+RUN apk add --no-cache bind-utils
 RUN dig mirror.ctan.org
 
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
