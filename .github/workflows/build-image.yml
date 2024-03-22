@@ -23,12 +23,12 @@ jobs:
       run: echo "BUILD_YEAR=$(date +%Y)" >> $GITHUB_ENV
     - name: downcase REPO
       run: echo "REPO=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
-    - name: Dnsx 
-      uses: projectdiscovery/dnsx-action@main
-      with:
-        list: hosts.txt
-        resolver: resolver.txt
     - name: Checkout
       uses: actions/checkout@v3.4.0
+    - name: Overwriting DNS
+      run: |
+         echo "nameserver 8.8.8.8" |  sudo tee  /etc/resolv.conf.DNSoverride
+         sudo ln -sf /etc/resolv.conf.DNSoverride /etc/resolv.conf
+         cat /etc/resolv.conf 
     - name: Build the Docker image
       run: docker build ./latex/ --file ./latex/Dockerfile --build-arg YEAR=${{ env.BUILD_YEAR }} --tag ${{ env.REGISTRY }}/latex:${{ env.BUILD_DATE }}
