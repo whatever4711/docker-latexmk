@@ -9,7 +9,7 @@ COPY config/ /usr/local/
 RUN apk add --no-cache perl wget tini gnupg gcc texlive && \
     apk add --no-cache --virtual=.build-dependencies xz tar fontconfig-dev && \
     mkdir /tmp/install-tl-unx /workdir && \
-    tar -xz -C /tmp/install-tl-unx --strip-components=1 -f $TAR_FILE && \
+    tar -xz -C /tmp/install-tl-unx --strip-components=1 -f /tmp/$TAR_FILE && \
     printf "%s\n" \
       "selected_scheme scheme-basic" \
       "option_doc 0" \
